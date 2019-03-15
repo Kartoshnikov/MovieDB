@@ -1,0 +1,11 @@
+<link rel="stylesheet" type "text/css" href="{{ static('test_app/style.css') }}">
+
+{% if cit_list  %}
+  <ul>
+  {% for citizen in cit_list %}
+     <li> <a href="{{ url('test:detail', args=[citizen.id]) }}">{{ citizen }}</a></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No citizen available.</p>
+{% endif %}

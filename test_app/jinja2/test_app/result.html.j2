@@ -1,0 +1,11 @@
+<h1>{{ citizen.citizen }}</h1>
+
+<ul>
+{% for person in citizen.person_set.all() %}
+	<li>{{ person.name }}  --  {{ person.votes }} vote{{ person.votes | pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{{ url('test:detail', args=[citizen.id,]) }}">Vote again ?</a>
+<br>
+<a href="{{ url('test:index') }}">main</a>

@@ -1,0 +1,6 @@
+<h1><{{ citizen.citizen }}/h1>
+<ul>
+ {% for person in citizen.person_set.all() %}
+     <li>{{ person }}</li>
+ {% endfor %}
+</ul>

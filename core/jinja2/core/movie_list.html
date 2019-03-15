@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block title %}
+    All the movies
+{% endblock %}
+
+
+
+{% block main %}
+    <ul>
+    {% for movie in object_list %}
+        <li>
+            <a href="{{ url('core:movie_detail', args=[movie.id,]) }}">{{ movie }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    {% if is_paginated %}
+	<nav>
+	    <ul class="pagination">
+	        <li class="page-item">
+		    <a class="page-link" href="{{ url('core:movie_ls') }}?page=1">First</a>
+		</li>
+
+
+		{% if page_obj.has_previous() %}
+		<li class="page-item">
+		    <a class="page-link" href="{{ url('core:movie_ls') }}?page={{ page_obj.previous_page_number() }}">
+			{{ page_obj.previous_page_number() }}
+		    </a>
+		</li>
+		{% endif %}
+
+
+		<li class="page-item">
+		    <a class="page-link" href="{{ url('core:movie_ls') }}?page={{ page_obj.number }}">
+			{{ page_obj.number }}
+		    </a>
+		</li>
+
+
+		{% if page_obj.has_next() %}
+		<li class="page-item">
+		    <a class="page-link" href="{{ url('core:movie_ls') }}?page={{ page_obj.next_page_number() }}">
+			{{ page_obj.next_page_number() }}
+		    </a>
+		</li>
+		{% endif %}
+
+
+		<li class="page-item">
+		    <a class="page-link" href="{{ url('core:movie_ls') }}?page=last">Last</a>
+		</li>
+	    </ul>
+	</nav>
+    {% endif %}
+{% endblock %}
+
