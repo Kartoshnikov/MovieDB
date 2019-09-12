@@ -2,15 +2,22 @@
 
 {% if error_message %} <p><strong>{{ error_message }}</p></strong>{% endif %}
 
-<form action="{{ url('test:vote', args=[citizen.id,]) }}" method="post">
+<form action="{{ url('test:vote', args=[citizen.id,]) }}" method="post" enctype="multipart/form-data">
 {{ csrf_input }}
 {% for person in citizen.person_set.all() %}
 	<input type="radio" name="person" id="person{{ loop.index }}" value="{{ person.id }}">
 	<label for="person{{ loop.index }}">{{ person.name }}</label><br>
 {% endfor %}
+<br><br>
+    <label for="title">Title</label><br>
+    <input type="text" name="title" size=15><br>
+    <br>
+    <p> Select a files: <input type="file" name="files" multiple> </p>
+    <p> Select a file: <input type="file" name="file"> </p>
 <br>
 <input type="submit" value="Vote">
 <br>
 <a href="{{ url('test:index') }}">main</a>
 </form>
+
 

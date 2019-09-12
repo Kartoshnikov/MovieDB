@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 # Create your tests here.
-from .models import Person, Citizen
+from test_app.models import Person, Citizen
 
 class PersonModelTests(TestCase):
 	

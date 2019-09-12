@@ -1,4 +1,4 @@
-"""django_test URL Configuration
+"""DC URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('core/', include('core.urls')),
-    path('test/', include('test_app.urls')),
+    path('test/', include('test_app.urls', namespace='test')),
     path('admin/', admin.site.urls),
 ]

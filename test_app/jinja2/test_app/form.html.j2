@@ -1,0 +1,21 @@
+<form method="post" enctype="multipart/form-data">
+    {{ csrf_input }}
+
+    {{ form.as_p() }}
+    <input type="submit" value="Submit">
+
+    {% for field in form %}
+        <p>
+            {% if field.errors %}
+                <ol>
+                {% for error in field.errors %}
+                    <li><strong> {{ error | escape }} </strong></li>
+                {% endfor %}
+                </ol>
+            {% endif %}
+            {{ field.label_tag() }}
+            {{ field }} <br>
+            {{ field.id_for_label }}
+        </p>
+    {% endfor %}
+</form>
