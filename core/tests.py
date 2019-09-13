@@ -16,7 +16,7 @@ class MovieListPaginationTestCase(TestCase):
 	</li>
 	"""
 
-        TEST_JENKINS_PARAM = 1
+        TEST_JENKINS_PARAM = 2
 
 	def setUp(self):
 		for i in range(20):
