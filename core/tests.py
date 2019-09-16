@@ -15,7 +15,9 @@ class MovieListPaginationTestCase(TestCase):
   	    <a class="page-link" href="{}?page={}">{}</a>
 	</li>
 	"""
-	
+
+        TEST_JENKINS_PARAM = 2
+
 	def setUp(self):
 		for i in range(20):
 			Movie.objects.create(
