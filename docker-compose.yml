@@ -1,12 +1,13 @@
 version: "3"
 services:
   python:
-    build: ./python_3.7.4
+    build: ./django_apps
     volumes:
-      - ../:/app
+      - ./django_apps:/app
     ports:
       - "8081:80"
-    command: ["./python_3.7.4/wait-for-postgres.sh", "postgres", "python3", "manage.py", "runserver", "0:80"]
+    user: root
+    command: ["./wait-for-postgres.sh", "postgres", "python", "manage.py", "runserver", "0:80"]
     networks:
       - webnet
 

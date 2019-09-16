@@ -8,13 +8,13 @@ host=$1
 shift
 cmd="$@"
 
-until PGPASSWORD=$POSTGRES_PASSWORD psql -h "$host" -c '\q'
+until PGPASSWORD=$POSTGRES_PASSWORD psql -h "$host" -U django -c '\q'
 do
     >&2 echo "Postgres is unavailable - sleeping"
     sleep 1
 done
 
 >&2 echo "Postgres is up - executing command"
-python3 manage.py makemigrations core
-python3 manage.py migrate core
+python manage.py makemigrations core &>> migration.log
+python manage.py migrate core &>> migration.log
 exec $cmd

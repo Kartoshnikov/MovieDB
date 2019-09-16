@@ -2,7 +2,7 @@ Django
 Jinja2
 MarkupSafe
 inflect
-jinja2-pluraliz
+jinja2-pluralize
 psycopg2
 pytz
 setuptools
