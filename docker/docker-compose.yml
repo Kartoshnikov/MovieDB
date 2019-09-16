@@ -1,0 +1,25 @@
+version: "3"
+services:
+  python:
+    build: ./python_3.7.4
+    volumes:
+      - ../:/app
+    ports:
+      - "8081:80"
+    command: ["./python_3.7.4/wait-for-postgres.sh", "postgres", "python3", "manage.py", "runserver", "0:80"]
+    networks:
+      - webnet
+
+  postgres:
+    build: ./postgres
+    volumes:
+      - /root/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+

@@ -111,9 +111,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'django',
         'PASSWORD': '1111',
-        'HOST': '10.254.28.76',
-        # 'HOST': '192.168.22.104',
-        # 'HOST': '192.168.8.101',
+        'HOST': 'postgres',
         'PORT': '',
     }
 }

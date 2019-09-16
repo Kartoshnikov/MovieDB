@@ -1,0 +1,8 @@
+Django
+Jinja2
+MarkupSafe
+inflect
+jinja2-pluraliz
+psycopg2
+pytz
+setuptools
