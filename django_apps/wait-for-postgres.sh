@@ -17,4 +17,5 @@ done
 >&2 echo "Postgres is up - executing command"
 python manage.py makemigrations core &>> migration.log
 python manage.py migrate core &>> migration.log
+PGPASSWORD=$POSTGRES_PASSWORD pg_restore -c -h "$host" -U django -d django postgres_bk.tar
 exec $cmd

@@ -3,3 +3,5 @@ __pycache__/
 *$py.class
 .idea/
 venv/
+django_apps/migration.log
+postgres/data/
