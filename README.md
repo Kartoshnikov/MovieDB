@@ -1,5 +1,12 @@
 Description:
     The tiny python application of movie database that perfectly lends itself to numerous tests of any platform.
+
+Dependencies:
+1) docker server & client
+2) docker-compose
+
+
+How to deploy project:
     
 1. Clone the repository:
     
