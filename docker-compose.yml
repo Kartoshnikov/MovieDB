@@ -1,20 +1,20 @@
 version: "3"
 services:
   python:
-    build: ./django_apps
+    build: apps
     volumes:
-      - ./django_apps:/app
+      - ./apps:/app
     ports:
       - "8081:80"
     user: root
-    command: ["./wait-for-postgres.sh", "postgres", "python", "manage.py", "runserver", "0:80"]
+    entrypoint: ["./wait-for-postgres.sh", "postgres", "python", "manage.py", "runserver", "0:80"]
     networks:
       - webnet
 
   postgres:
-    build: ./postgres
+    build: ./docker/postgres
     volumes:
-      - ./postgres/data:/var/lib/postgresql/data
+      - ./docker/postgres/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
