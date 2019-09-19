@@ -4,4 +4,4 @@ __pycache__/
 .idea/
 venv/
 django_apps/migration.log
-postgres/data/
+docker/postgres/data/
