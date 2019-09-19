@@ -16,7 +16,7 @@ How to deploy project:
 
     cd MovieDB
 
-3. Build and start stack:
+3. Build and start containers at one fell swoop:
 
     docker-compose up -d
 
