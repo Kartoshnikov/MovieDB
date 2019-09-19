@@ -1,18 +1,22 @@
 version: "3"
 services:
   python:
-    build: apps
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
     volumes:
-      - ./apps:/app
+      - ./app:/app
     ports:
       - "8081:80"
     user: root
-    entrypoint: ["./wait-for-postgres.sh", "postgres", "python", "manage.py", "runserver", "0:80"]
+    command: ["/wait-for-postgres.sh", "postgres", "python", "manage.py", "runserver", "0:80"]
     networks:
       - webnet
 
   postgres:
-    build: ./docker/postgres
+    build: 
+      context: .
+      dockerfile: docker/postgres/Dockerfile
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data
     ports:
@@ -22,5 +26,3 @@ services:
 
 networks:
   webnet:
-
-
