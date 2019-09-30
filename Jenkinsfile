@@ -1,5 +1,11 @@
 pipeline {
     agent { label "QA" }
+    triggers { githubPush() }
+	options {
+		buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '4'))
+		timeout( time: 10, unit: 'MINUTES' )
+		timestamps()
+	}
 
 	stages {
         stage('Git clone'){
@@ -15,19 +21,21 @@ pipeline {
 		}
 
 		stage('Test'){
-		    steps{
-		        sh 'sudo docker-compose exec -T python bash -c "python3 manage.py test core"'
+            options {
+                timeout(time: 120, unit: 'SECONDS')
+            }
+		    steps {
+				script {
+					waitUntil {
+						def res = sh script: 'sudo docker-compose exec -T python bash -c "python3 manage.py test core"', returnStatus: true
+						return (res == 0)
+					}
+				}
 		    }
-		}
-
-		stage('Clean up'){
-		    when {
-		        expression {
-		            return true
-		        }
-		    }
-		    steps{
-		        sh 'sudo docker-compose down -v'
+		    post {
+                always {
+                    sh 'sudo docker-compose down -v'
+                }
 		    }
 		}
 
@@ -37,6 +45,11 @@ pipeline {
 		        sh "sudo docker-compose up --build -d"
 		    }
 		}
+    }
 
+    post {
+        always {
+            deleteDir()
+        }
     }
 }
